@@ -4,8 +4,8 @@ import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 
 // Contract addresses for each network
 export const CONTRACT_ADDRESSES: Record<number, `0x${string}`> = {
-  84532: "0x0000000000000000000000000000000000000000", // Base Sepolia - Replace with your deployed contract
-  8453: "0x0000000000000000000000000000000000000000", // Base Mainnet - Replace with your deployed contract
+  84532: "0x083C4B91577a28cD96DC948952e12D6f5390E13C", // Base Sepolia - Replace with your deployed contract
+  8453: "0x083C4B91577a28cD96DC948952e12D6f5390E13C", // Base Mainnet - Replace with your deployed contract
 };
 
 // Block explorer URLs
