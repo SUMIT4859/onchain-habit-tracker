@@ -8,7 +8,7 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import { CONTRACT_ADDRESSES, HABIT_TRACKER_ABI } from "@/utils/config";
+import { CONTRACT_ADDRESSES, HABIT_TRACKER_ABI } from "@/utils/contract";
 import {
   calculateStreak,
   isCompletedToday,

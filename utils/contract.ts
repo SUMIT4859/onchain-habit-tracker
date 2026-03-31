@@ -3,6 +3,13 @@ export const CONTRACT_ADDRESSES: Record<number, `0x${string}`> = {
   8453: "0x083C4B91577a28cD96DC948952e12D6f5390E13C",
 };
 
+
+export const EXPLORER_URLS: Record<number, string> = {
+  84532: "https://sepolia.basescan.org",
+  8453: "https://basescan.org",
+};
+
+
 export const HABIT_TRACKER_ABI = [
   {
     inputs: [

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Check, Flame, Loader2, ExternalLink } from "lucide-react";
 import { useChainId } from "wagmi";
-import { EXPLORER_URLS } from "@/utils/config";
+import { EXPLORER_URLS } from "@/utils/contract";
 import {
   calculateStreak,
   isCompletedToday,
