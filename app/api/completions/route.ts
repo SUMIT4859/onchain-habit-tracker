@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createPublicClient, http } from "viem";
 import { base, baseSepolia } from "viem/chains";
-import { CONTRACT_ADDRESSES, HABIT_TRACKER_ABI } from "@/utils/config";
+import { CONTRACT_ADDRESSES, HABIT_TRACKER_ABI } from "@/utils/contract";
 
 export async function GET(request: Request) {
   try {
@@ -11,7 +11,6 @@ export async function GET(request: Request) {
     const habitId = searchParams.get("habitId");
     const chainId = searchParams.get("chainId");
 
-    // 🔒 Validate required params
     if (!address || habitId === null || !chainId) {
       return NextResponse.json(
         { error: "Missing required parameters" },
@@ -19,7 +18,6 @@ export async function GET(request: Request) {
       );
     }
 
-    // 🔒 Validate address
     if (!address.startsWith("0x")) {
       return NextResponse.json(
         { error: "Invalid address" },
@@ -27,7 +25,6 @@ export async function GET(request: Request) {
       );
     }
 
-    // 🔒 Validate chainId
     const chainIdNum = Number(chainId);
     if (isNaN(chainIdNum)) {
       return NextResponse.json(
@@ -44,7 +41,6 @@ export async function GET(request: Request) {
       );
     }
 
-    // 🔒 Validate habitId
     let habitIdBigInt: bigint;
     try {
       habitIdBigInt = BigInt(habitId);
@@ -55,16 +51,13 @@ export async function GET(request: Request) {
       );
     }
 
-    // 🔗 Select correct chain
     const chain = chainIdNum === 8453 ? base : baseSepolia;
 
-    // 🌐 Create public client (server-safe)
     const client = createPublicClient({
       chain,
       transport: http(),
     });
 
-    // 📦 Read contract
     const completions = await client.readContract({
       address: contractAddress as `0x${string}`,
       abi: HABIT_TRACKER_ABI,
@@ -72,7 +65,6 @@ export async function GET(request: Request) {
       args: [address as `0x${string}`, habitIdBigInt],
     });
 
-    // ✅ Return response
     return NextResponse.json({
       completions: (completions as bigint[]).map((c) => c.toString()),
     });
